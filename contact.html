@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Warfield - Contact</title>
+
+    <!-- Local Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+
+    <!-- Shared Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+ <body class="light">
+  <!-- Header -->
+  <header class="header">
+    Lucas Warfield - Contact
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-container">
+    <!-- Navigation -->
+    <nav>
+      <ul class="nav-list">
+        <li><a href="photography.html" id="photography-link">Photography</a></li>
+        <ul class="submenu" id="photography-submenu">
+          <li><a href="set1.html">Set 1</a></li>
+          <li><a href="set2.html">Set 2</a></li>
+          <li><a href="set3.html">Set 3</a></li>
+        </ul>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Centered Contact Links -->
+    <main class="contact-links">
+      <a href="https://www.linkedin.com/in/lucas-warfield/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/coldmiso/" target="_blank">Instagram</a>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; <span id="current-year"></span> Lucas Warfield
+  </footer>
+
+  <!-- Light/Dark Mode Switch -->
+  <div class="mode-switch">
+    <button id="auto-mode">Auto</button>
+    <button id="light-mode">Light</button>
+    <button id="dark-mode">Dark</button>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.4.1.js"></script>
+
+  <script>
+    // Handle Light/Dark Mode
+    const autoButton = document.getElementById("auto-mode");
+    const lightButton = document.getElementById("light-mode");
+    const darkButton = document.getElementById("dark-mode");
+
+    function setTheme(theme) {
+      document.body.className = theme;
+      localStorage.setItem("theme", theme);
+    }
+
+    autoButton.addEventListener("click", () => {
+      const hour = new Date().getHours();
+      const isNightTime = hour >= 18 || hour < 6;
+      setTheme(isNightTime ? "dark" : "light");
+    });
+
+    lightButton.addEventListener("click", () => {
+      setTheme("light");
+    });
+
+    darkButton.addEventListener("click", () => {
+      setTheme("dark");
+    });
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      document.body.className = savedTheme;
+    } else {
+      autoButton.click();
+    }
+
+    // Set current year in footer
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

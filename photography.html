@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Warfield</title>
+
+    <!-- Local Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+
+    <!-- Shared Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body class="light">
+  <!-- Header -->
+  <header class="header">
+    Lucas Warfield - Photography
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <div class="main-container">
+    <!-- Navigation -->
+    <nav>
+      <ul class="nav-list">
+        <li><a href="photography.html" id="photography-link" aria-current="page">Photography</a></li>
+        <ul class="submenu" id="photography-submenu">
+          <li><a href="set1.html">Set 1</a></li>
+          <li><a href="set2.html">Set 2</a></li>
+          <li><a href="set3.html">Set 3</a></li>
+        </ul>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" >Contact</a></li>
+      </ul>
+    </nav>
+
+
+  <!-- Main Gallery -->
+  <main class="gallery-container">
+    <section class="gallery-year" data-year="2025">
+      <button class="toggle-button" aria-expanded="false">2025</button>
+      <div class="thumbnails">
+        <a href="2025-gallery1.html">
+          <img src="images/2025-gallery1.jpg" alt="Gallery 1 - 2025">
+        </a>
+        <a href="2025-gallery2.html">
+          <img src="images/2025-gallery2.jpg" alt="Gallery 2 - 2025">
+        </a>
+        <a href="2025-gallery3.html">
+          <img src="images/2025-gallery3.jpg" alt="Gallery 3 - 2025">
+        </a>
+      </div>
+    </section>
+
+    <section class="gallery-year" data-year="2024">
+      <button class="toggle-button" aria-expanded="false">2024</button>
+      <div class="thumbnails">
+        <a href="2024-gallery1.html">
+          <img src="images/2024-gallery1.jpg" alt="Gallery 1 - 2024">
+        </a>
+        <a href="2024-gallery2.html">
+          <img src="images/2024-gallery2.jpg" alt="Gallery 2 - 2024">
+        </a>
+      </div>
+    </section>
+
+    <section class="gallery-year" data-year="2023">
+      <button class="toggle-button" aria-expanded="false">2023</button>
+      <div class="thumbnails">
+        <a href="2023-gallery1.html">
+          <img src="images/2023-gallery1.jpg" alt="Gallery 1 - 2023">
+        </a>
+        <a href="2023-gallery2.html">
+          <img src="images/2023-gallery2.jpg" alt="Gallery 2 - 2023">
+        </a>
+      </div>
+    </section>
+
+    <section class="gallery-year" data-year="2022">
+      <button class="toggle-button" aria-expanded="false">2022</button>
+      <div class="thumbnails">
+        <a href="2022-gallery1.html">
+          <img src="images/2022-gallery1.jpg" alt="Gallery 1 - 2022">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    &copy; <span id="current-year"></span> Lucas Warfield
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Handle collapsible sections
+    const toggleButtons = document.querySelectorAll('.toggle-button');
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const thumbnails = button.nextElementSibling;
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !isExpanded);
+        thumbnails.style.display = isExpanded ? 'none' : 'grid';
+      });
+    });
+
+    // Set current year in footer
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+	  
+    // Handle Light/Dark Mode
+    const autoButton = document.getElementById("auto-mode");
+    const lightButton = document.getElementById("light-mode");
+    const darkButton = document.getElementById("dark-mode");
+
+    function setTheme(theme) {
+      document.body.className = theme;
+      localStorage.setItem("theme", theme);
+    }
+
+    autoButton.addEventListener("click", () => {
+      const hour = new Date().getHours();
+      const isNightTime = hour >= 18 || hour < 6;
+      setTheme(isNightTime ? "dark" : "light");
+    });
+
+    lightButton.addEventListener("click", () => {
+      setTheme("light");
+    });
+
+    darkButton.addEventListener("click", () => {
+      setTheme("dark");
+    });
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      document.body.className = savedTheme;
+    } else {
+      autoButton.click();
+    }
+
+    // Set current year in footer
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+	  
+  </script>
+</body>
+</html>
