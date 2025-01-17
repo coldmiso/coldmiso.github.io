@@ -1,0 +1,259 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column; /* Stack header and main content */
+  min-height: 100vh; /* Ensure the body fills the viewport */
+}
+
+/* Prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Light and Dark Mode */
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Header styles */
+.header {
+  width: 100%; /* Stretch header across the full width */
+  text-align: left; /* Left-align header text */
+  margin: 20px 0 20px 20px; /* Add left margin for alignment */
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Wrapper for navigation and contact links */
+.main-container {
+  display: flex;
+  flex-direction: row; /* Align navigation and links side by side */
+  width: 100%; /* Stretch container to the full width of the viewport */
+  justify-content: flex-start; /* Align both items to the left */
+  align-items: flex-start; /* Align items to the top */
+  flex-grow: 1; /* Allow this container to fill available vertical space */
+}
+
+/* Navigation styles */
+.nav-list {
+  list-style: none;
+  padding: 20px 0 0 20px; /* Top and left padding for alignment */
+  margin: 0;
+  width: 200px; /* Fixed width for navigation */
+  position: sticky; /* Keeps the navigation fixed relative to the viewport */
+  top: 0; /* Stick to the top of the viewport */
+  height: 100vh; /* Full height navigation panel */
+  background-color: inherit; /* Match the background color of the theme */
+}
+
+.nav-list li {
+  margin: 10px 0;
+  font-size: 1.25rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+}
+
+.nav-list a:hover {
+  color: #FF4F00; /* International Orange */
+  transition: color 0.2s ease-in-out; /* Smooth color transition */
+  text-decoration: underline;
+}
+
+.nav-list a[aria-current="page"] {
+  font-weight: bold;
+  color: #FF4F00; /* International Orange */
+}
+
+
+/* Hamburger Nav */ 
+/* Hamburger Menu Button */
+.hamburger {
+  display: none; /* Hidden by default */
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: inherit; /* Match theme */
+  cursor: pointer;
+  margin: 0; /* Reset default margin */
+  position: absolute;
+  top: 50%; /* Center vertically */
+  right: 20px; /* Align to the right */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Show hamburger on small screens */
+  }
+
+  .nav-list {
+    display: none; /* Hide the menu initially */
+    flex-direction: column; /* Stack items vertically */
+    position: absolute;
+    top: 50px; /* Below the header */
+    right: 0; /* Align to the left */
+    width: 100%; /* Full width for the dropdown */
+    padding: 10px 20px;
+    background-color: inherit; /* Match theme */
+    border-top: 1px solid #ddd; /* Optional: Separator line */
+    z-index: 1000; /* Ensure the menu stays on top */
+  }
+
+  .nav-list.show {
+    display: flex; /* Show menu when toggled */
+  }
+}
+
+/* Centered Links for Contact Page */
+.contact-links {
+  display: flex;
+  flex-direction: column; /* Stack the links vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Align links to the top */
+  flex-grow: 1; /* Allow it to take the remaining space */
+  margin-left: auto; /* Push the links to the center of the available space */
+  gap: 20px; /* Space between links */
+}
+
+.contact-links a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: inherit; /* Match the theme */
+  transition: color 0.3s;
+}
+
+.contact-links a:hover {
+  color: #FF4F00; /* International Orange for hover */
+}
+
+/* Footer styles */
+.footer {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Light/Dark Mode Switch */
+.mode-switch {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  font-size: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mode-switch button {
+  background: none;
+  border: none;
+  color: inherit; /* Match text color to current theme */
+  padding: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.mode-switch button:hover {
+  text-decoration: underline;
+}
+
+/* Gallery Page Styles */
+.gallery-container {
+  margin: 20px;
+}
+
+.gallery-year {
+  margin-bottom: 20px;
+}
+
+/* Toggle Button */
+.toggle-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0);; 
+  color: inherit;
+  border: #000000;
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align: left;
+  border-radius: 0px;
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+/*  background-color: rgba(0, 0, 0, 0.7); */
+}
+
+.toggle-button[aria-expanded="true"] {
+/*  background-color: rgba(0, 0, 0, 0.7); */
+}
+
+/* Thumbnails */
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust width as needed */
+  gap: 10px; /* Spacing between thumbnails */
+}
+
+.thumbnails a {
+  position: relative;
+  display: block;
+  overflow: hidden; /* Ensure content is clipped within the bounds */
+  border-radius: 8px; /* Match the thumbnail's rounded corners */
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%; /* Fixed height for aspect ratio */
+  object-fit: cover; /* Crop the image */
+  object-position: center; /* Center the image within the container */
+  border-radius: 8px; /* Optional: rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
+  transition: transform 0.2s ease; /* Optional: hover effect */
+}
+
+.thumbnail:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.thumbnails a::after {
+  content: attr(alt); /* Display the alt text dynamically */
+  position: absolute;
+  top: 50%; /* Start text at 50% from the top */
+  left: 50%; /* Start text at 50% from the left */
+  transform: translate(-50%, -50%); /* Center text vertically and horizontally */
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background for contrast */
+  color: #fff; /* White text for visibility */
+  font-size: 0.875rem; /* Slightly smaller font size for subtlety */
+  font-weight: 500; /* Medium weight for better readability */
+  padding: 4px 8px; /* Padding around the text */
+  text-align: center;
+  border-radius: 4px; /* Rounded edges for the text box */
+  pointer-events: none; /* Prevent the overlay from interfering with clicks */
+  white-space: nowrap; /* Prevent text wrapping */
+  opacity: 1; /* Make the text always visible */
+}
+
