@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Warfield</title>
+    <title>Lucas Warfield - Home</title>
 
     <!-- Local Bootstrap -->
     <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
@@ -18,19 +18,7 @@
     </header>
 
     <!-- Navigation -->
-    <nav>
-      <ul class="nav-list">
-        <li><a href="photography.html" id="photography-link">Photography</a></li>
-        <ul class="submenu" id="photography-submenu">
-          <li><a href="set1.html">Set 1</a></li>
-          <li><a href="set2.html">Set 2</a></li>
-          <li><a href="set3.html">Set 3</a></li>
-        </ul>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <div id="navigation"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -50,30 +38,45 @@
     <script src="js/bootstrap-4.4.1.js"></script>
 
     <script>
+      // Dynamically load navigation from nav.html
+      fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navigation').innerHTML = data;
+
+          // Add event listener for the hamburger menu (if applicable)
+          const hamburger = document.getElementById('hamburger');
+          const navMenu = document.getElementById('nav-menu');
+
+          if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+              navMenu.classList.toggle('hidden');
+              hamburger.classList.toggle('active');
+            });
+          }
+        })
+        .catch(error => console.error('Error loading navigation:', error));
+
       // Handle Light/Dark Mode
       const autoButton = document.getElementById("auto-mode");
       const lightButton = document.getElementById("light-mode");
       const darkButton = document.getElementById("dark-mode");
 
-      // Set theme based on preference
       function setTheme(theme) {
         document.body.className = theme;
         localStorage.setItem("theme", theme);
       }
 
-      // Auto Mode
       autoButton.addEventListener("click", () => {
         const hour = new Date().getHours();
         const isNightTime = hour >= 18 || hour < 6; // Night: 6 PM - 6 AM
         setTheme(isNightTime ? "dark" : "light");
       });
 
-      // Light Mode
       lightButton.addEventListener("click", () => {
         setTheme("light");
       });
 
-      // Dark Mode
       darkButton.addEventListener("click", () => {
         setTheme("dark");
       });
