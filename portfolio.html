@@ -10,51 +10,67 @@
 
     <!-- Shared Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <style>
+      /* Custom CSS for centering the content */
+      .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: calc(100vh - 150px); /* Adjust height to account for header/footer */
+        text-align: center;
+      }
+
+      /* International Orange Download Button */
+      .download-btn {
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        background-color: #FF4F00; /* International Orange */
+        color: #ffffff; /* White text */
+        border: none;
+        border-radius: 5px; /* Rounded corners */
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+      }
+
+      .download-btn:hover {
+        background-color: #cc3f00; /* Darker shade for hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+      }
+
+      .download-btn:active {
+        transform: scale(0.95); /* Slightly shrink on click */
+      }
+
+      /* Light/Dark Mode Transition */
+      body {
+        transition: background-color 0.3s, color 0.3s;
+      }
+    </style>
   </head>
   <body class="light">
     <!-- Header -->
     <header class="header">
-      Portfolio
+      Lucas Warfield
     </header>
 
     <!-- Navigation -->
     <div id="navigation"></div>
-	  
-	<!-- Portfolio PDF Display -->
-	  <main class="portfolio-container">
-  <h1>Short Works 2025</h1>
-  <div id="pdf-viewer" style="height: 600px; width: 75%;"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
-  <script>
-    const url = "content/Warfield-Lucas_Portfolio_2025_compressed.pdf";
-
-    const pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
-
-    const loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(pdf => {
-      const container = document.getElementById('pdf-viewer');
-      for (let i = 1; i <= pdf.numPages; i++) {
-        pdf.getPage(i).then(page => {
-          const canvas = document.createElement('canvas');
-          container.appendChild(canvas);
-          const viewport = page.getViewport({ scale: 1 });
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-
-          const renderContext = {
-            canvasContext: canvas.getContext('2d'),
-            viewport: viewport,
-          };
-          page.render(renderContext);
-        });
-      }
-    });
-  </script>
-</main>
+    
+    <!-- Main Content -->
+    <main class="centered-container">
+      <div>
+        <h1>Shortworks 2025</h1>
+        <a href="content/Warfield-Lucas_Portfolio_2025_compressed.pdf" download class="download-btn">
+          Download PDF
+        </a>
+      </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer text-center">
       &copy; <span id="current-year"></span> Lucas Warfield
     </footer>
 
@@ -123,7 +139,7 @@
       }
 
       // Set current year in footer
-      document.getElementById("current-year").textContent = new Date().getFullYear();
+      document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
